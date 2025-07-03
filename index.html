@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Agency Calculus: A Societal Diagnosis of the United States (2000-2050)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            line-height: 1;
+            color: #0055A4;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#002D72] mb-2">The Agency Calculus</h1>
+            <h2 class="text-xl md:text-2xl font-bold text-[#0055A4]">A Societal Diagnosis of the United States: 2000-2050</h2>
+            <p class="max-w-4xl mx-auto mt-4 text-gray-600">This analysis uses the "Agency Calculus 2.1" framework to measure societal health by the net flow of <span class="font-bold">agency</span>—the real-world opportunities and freedoms of a system's members. A system that expands agency is stable; one that compresses it is not.</p>
+        </header>
+
+        <section id="diagnosis" class="mb-16">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-[#002D72]">Part I: Diagnosis of a Stressed System (2000-2025)</h3>
+                <p class="max-w-3xl mx-auto mt-2 text-gray-600">From 2000-2025, the U.S. has operated as a system of <span class="font-bold text-red-600">net agency compression</span>, accumulating a high Societal Agency Debt Index (SADI) and entering a feedback loop of decay.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="bg-white rounded-lg shadow-md p-6 lg:col-span-3">
+                    <h4 class="text-xl font-bold text-[#0055A4] mb-4">Economic Agency: The Rise of Agency Debt</h4>
+                    <p class="text-gray-600 mb-6">The erosion of economic freedom is the primary driver of agency compression. Surging inequality and debt have created a structural trap, mortgaging the present and future choice space of millions.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-5xl font-black text-[#00A1E4]">$18.2T</div>
+                            <p class="font-bold mt-2">Total Household Debt (2025)</p>
+                            <p class="text-sm text-gray-500">Up from $7.0T in 2000</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="text-5xl font-black text-[#00A1E4]">41.8</div>
+                            <p class="font-bold mt-2">Gini Coefficient (2023)</p>
+                            <p class="text-sm text-gray-500">Persistently high inequality</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                           <div class="text-5xl font-black text-[#00A1E4]">$1.63T</div>
+                            <p class="font-bold mt-2">Student Loan Debt (2025)</p>
+                            <p class="text-sm text-gray-500">Up from $0.24T in 2003</p>
+                        </div>
+                    </div>
+                     <div class="mt-6">
+                        <div class="chart-container">
+                             <canvas id="debtChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2">The explosion of household and student debt represents the most explicit form of Agency Debt, a direct constraint on the future choices of a large portion of the population.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-xl font-bold text-[#0055A4] mb-2">Health Agency: A Foundational Failure</h4>
+                    <p class="text-gray-600 mb-4">Despite the world's highest healthcare spending, U.S. health outcomes are faltering. Declining life expectancy is the ultimate indictment of a system failing to provide the most basic layer of agency.</p>
+                    <div class="chart-container">
+                        <canvas id="lifeExpectancyChart"></canvas>
+                    </div>
+                     <p class="text-center text-sm text-gray-600 mt-2">U.S. life expectancy stagnated and fell, now lagging far behind peer nations, representing a profound, net-negative agency transaction on a societal scale.</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-xl font-bold text-[#0055A4] mb-2">The Illusion of Access</h4>
+                    <p class="text-gray-600 mb-4">While the uninsured rate has fallen, medical debt remains a national crisis, revealing a system of "permissive agency" where using one's insurance often leads to crippling Agency Debt.</p>
+                    <div class="chart-container">
+                        <canvas id="medicalDebtChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-600 mt-2">A staggering 80% of individuals with medical debt are insured, exposing the trap of underinsurance where a health crisis inflicts a catastrophic loss of both Health and Economic Agency.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-xl font-bold text-[#0055A4] mb-2">Political & Social Agency: The Collapse of Trust</h4>
+                    <p class="text-gray-600 mb-4">A healthy society requires trust. Its collapse in the U.S. is the system's core vulnerability, paralyzing collective action and destroying the "Systemic Permissive Agency" needed for daily life.</p>
+                    <div class="chart-container">
+                        <canvas id="trustChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-600 mt-2">Trust in the federal government has cratered, crippling the system's ability to navigate crises and leaving it vulnerable to the Agency Shock Doctrine.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="shock-doctrine" class="mb-16">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-[#002D72]">The Agency Shock Doctrine in Action</h3>
+                <p class="max-w-3xl mx-auto mt-2 text-gray-600">Crises are often leveraged by powerful agents to justify policies that cause a permanent compression of agency for the general populace. The U.S. has proven highly susceptible.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-4">
+                    <div class="flex-1 text-center">
+                        <div class="text-3xl font-black text-[#00A1E4]">2001</div>
+                        <h5 class="font-bold text-lg mt-2">9/11 Attacks</h5>
+                        <p class="text-sm text-gray-600 mt-1">Fear was leveraged to pass the PATRIOT Act, leading to a permanent compression of privacy agency via mass surveillance.</p>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="text-3xl font-black text-[#00A1E4]">2008</div>
+                        <h5 class="font-bold text-lg mt-2">Financial Crisis</h5>
+                        <p class="text-sm text-gray-600 mt-1">Bailouts protected the financial elite while the public suffered massive agency loss via foreclosures and unemployment.</p>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="text-3xl font-black text-[#00A1E4]">2020</div>
+                        <h5 class="font-bold text-lg mt-2">COVID-19 Pandemic</h5>
+                        <p class="text-sm text-gray-600 mt-1">A lack of trust made a coherent response impossible, resulting in failed agency trade-offs and corporate bailouts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prediction" class="mb-16">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-[#002D72]">Part II: Prediction and Trajectory (2025-2050)</h3>
+                <p class="max-w-3xl mx-auto mt-2 text-gray-600">The diagnosed agency compression creates an unstable system. The "Big Beautiful Bill," a policy projected to strip 10-16 million people of health coverage, will act as a powerful accelerant.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h4 class="text-xl font-bold text-center text-[#0055A4] mb-6">The Feedback Loop of Decay</h4>
+                <div class="flex flex-col items-center">
+                    
+                    <div class="w-full max-w-md text-center bg-gray-50 p-4 rounded-lg border-l-4 border-[#00A1E4]">
+                        <h5 class="font-bold text-lg">Stage 1: Stagnation (2025-2035)</h5>
+                        <p class="text-sm text-gray-600">Driven by low trust and polarization. Manifests as legislative gridlock, crippled innovation, and erosion of institutional capacity.</p>
+                    </div>
+
+                    <div class="flowchart-arrow"></div>
+
+                    <div class="w-full max-w-md text-center bg-gray-50 p-4 rounded-lg border-l-4 border-[#0055A4]">
+                        <h5 class="font-bold text-lg">Stage 2: Instability (2035-2045)</h5>
+                        <p class="text-sm text-gray-600">Unresolved Agency Debt comes due. Manifests as widespread social unrest, challenges to election legitimacy, and capital flight.</p>
+                    </div>
+
+                    <div class="flowchart-arrow"></div>
+
+                    <div class="w-full max-w-md text-center bg-gray-50 p-4 rounded-lg border-l-4 border-[#002D72]">
+                        <h5 class="font-bold text-lg">Stage 3: State Change (2045-2050)</h5>
+                        <p class="text-sm text-gray-600">The Societal Agency Debt Index reaches a tipping point. Systemic pressure demands release through a fundamental transformation.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <section id="futures" class="mb-8">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-[#002D72]">The Crossroads: Three Potential Futures</h3>
+                <p class="max-w-3xl mx-auto mt-2 text-gray-600">By mid-century, the system's accumulated pressure will force a state change. The calculus projects three primary possibilities.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 text-center border-t-4 border-red-600">
+                    <div class="text-5xl mb-4">📉</div>
+                    <h4 class="text-xl font-bold text-red-700 mb-2">Collapse / Fragmentation</h4>
+                    <p class="text-gray-600 text-sm">The most probable outcome. Federal authority evaporates, political violence becomes endemic, and the nation fractures along ideological or regional lines.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center border-t-4 border-gray-800">
+                    <div class="text-5xl mb-4">🏛️</div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Authoritarian Transformation</h4>
+                    <p class="text-gray-600 text-sm">A "strongman" leader emerges from the chaos, promising order through force and transforming the flawed democracy into an overt autocracy.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center border-t-4 border-green-600">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h4 class="text-xl font-bold text-green-700 mb-2">Radical Transformation</h4>
+                    <p class="text-gray-600 text-sm">The least likely path. A near-collapse forces the forging of a new social contract through radical reforms aimed at a massive expansion of net agency for all.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center p-4 text-xs text-gray-500">
+        <p>This infographic is a visual representation of the "Agency Calculus 2.1" framework. Data synthesized from sources including the World Bank, U.S. Census Bureau, Federal Reserve, CDC, and Pew Research Center.</p>
+        <p>NEITHER Mermaid JS NOR SVG were used in the creation of this artifact. All visualizations are rendered via the HTML Canvas element.</p>
+    </footer>
+
+<script>
+    const COLORS = {
+        blue1: '#00A1E4',
+        blue2: '#0055A4',
+        blue3: '#002D72',
+        gray: '#F1F1F1',
+        text: '#333333',
+        red: '#DC2626'
+    };
+
+    const FONT_OPTIONS = {
+        font: {
+            family: "'Inter', sans-serif",
+        },
+        color: COLORS.text
+    };
+
+    function wrapLabel(label) {
+        const maxLength = 16;
+        if (label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + word).length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = '';
+            }
+            currentLine += word + ' ';
+        });
+        lines.push(currentLine.trim());
+        return lines;
+    }
+    
+    const TOOLTIP_PLUGIN_CONFIG = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        } else {
+                          return label;
+                        }
+                    }
+                }
+            },
+            legend: {
+                labels: {
+                    ...FONT_OPTIONS
+                }
+            }
+        }
+    };
+
+    const debtCtx = document.getElementById('debtChart').getContext('2d');
+    new Chart(debtCtx, {
+        type: 'line',
+        data: {
+            labels: ['2000', '2005', '2010', '2015', '2020', '2025'],
+            datasets: [{
+                label: 'Total Household Debt (Trillions)',
+                data: [7.0, 9.4, 12.7, 12.3, 14.6, 18.2],
+                borderColor: COLORS.blue1,
+                backgroundColor: 'rgba(0, 161, 228, 0.2)',
+                fill: true,
+                tension: 0.4
+            }, {
+                label: 'Student Loan Debt (Trillions)',
+                data: [0.24, 0.48, 0.83, 1.28, 1.57, 1.63],
+                borderColor: COLORS.blue2,
+                backgroundColor: 'rgba(0, 85, 164, 0.2)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        ...FONT_OPTIONS,
+                        callback: function(value) { return '$' + value + 'T'; }
+                    },
+                    grid: { color: '#e5e7eb' }
+                },
+                x: {
+                    ticks: { ...FONT_OPTIONS },
+                    grid: { display: false }
+                }
+            },
+            ...TOOLTIP_PLUGIN_CONFIG
+        }
+    });
+
+    const lifeExpectancyCtx = document.getElementById('lifeExpectancyChart').getContext('2d');
+    new Chart(lifeExpectancyCtx, {
+        type: 'line',
+        data: {
+            labels: ['2000', '2005', '2010', '2015', '2020', '2023'],
+            datasets: [{
+                label: 'U.S. Life Expectancy (Years)',
+                data: [76.6, 77.6, 78.5, 78.6, 77.0, 78.4],
+                borderColor: COLORS.red,
+                backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: 'OECD Average (Example)',
+                data: [77.2, 78.4, 79.7, 80.5, 80.6, 81.2],
+                borderColor: COLORS.blue2,
+                backgroundColor: 'rgba(0, 85, 164, 0.1)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    ticks: { ...FONT_OPTIONS },
+                    grid: { color: '#e5e7eb' }
+                },
+                x: {
+                    ticks: { ...FONT_OPTIONS },
+                    grid: { display: false }
+                }
+            },
+            ...TOOLTIP_PLUGIN_CONFIG
+        }
+    });
+
+    const medicalDebtCtx = document.getElementById('medicalDebtChart').getContext('2d');
+    new Chart(medicalDebtCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Insured with Medical Debt', 'Uninsured with Medical Debt'],
+            datasets: [{
+                label: 'Medical Debt Holders',
+                data: [80, 20],
+                backgroundColor: [COLORS.blue2, COLORS.blue1],
+                borderColor: COLORS.gray,
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '60%',
+            ...TOOLTIP_PLUGIN_CONFIG
+        }
+    });
+    
+    const trustCtx = document.getElementById('trustChart').getContext('2d');
+    new Chart(trustCtx, {
+        type: 'bar',
+        data: {
+            labels: ['2001', '2008', '2016', '2024'],
+            datasets: [{
+                label: '% Trust in Federal Government',
+                data: [55, 25, 19, 22],
+                backgroundColor: [COLORS.blue1, COLORS.blue2, COLORS.blue3, COLORS.red],
+                borderColor: 'rgba(255, 255, 255, 0)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 60,
+                    ticks: {
+                        ...FONT_OPTIONS,
+                        callback: function(value) { return value + '%'; }
+                    },
+                    grid: { color: '#e5e7eb' }
+                },
+                x: {
+                    ticks: { ...FONT_OPTIONS },
+                    grid: { display: false }
+                }
+            },
+            ...TOOLTIP_PLUGIN_CONFIG,
+            plugins: {
+                ...TOOLTIP_PLUGIN_CONFIG.plugins,
+                legend: { display: false }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
